@@ -1,15 +1,18 @@
 import dotenv from 'dotenv'
 import express from 'express'
 import cors from 'cors'
-import { sendSqs } from './utils.js'  // Note the .js extension
+import { sendSqs } from './utils.js' 
+import morgan from 'morgan'
 
 if(process.env.NODE_ENV !== 'production') {
     dotenv.config()
 }
 
 const app = express()
-const port = 3001
 
+const PORT = process.env.PORT
+
+app.use(morgan('tiny'));
 app.use(cors({
     origin: "*",
     methods: "GET,POST",
@@ -19,13 +22,16 @@ app.use(cors({
 app.use(express.json())
 
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.send('PRODUCER SERVEIVE!')
 })
 
 app.post('/insurance/send', async (req, res) => {
-    console.log('insurance/send route post')
+    //console.log('insurance/send route post')
     const data = req.body;
-    console.log(data);
+    if(!data) {
+        throw Error('message is empty')
+    }
+    //console.log(data);
     try {
         await sendSqs(process.env.QUEUE_URL, data);
         res.status(200).json({ message: 'Message sent successfully' });
@@ -35,6 +41,9 @@ app.post('/insurance/send', async (req, res) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+app.listen(PORT, () => {
+    console.log("##########################################")
+    console.log(`########### LISTENING ON ${PORT} ############`)
+    console.log("##########################################")
+
 })

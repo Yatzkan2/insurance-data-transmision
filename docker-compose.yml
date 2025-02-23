@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_PRODUCER_API_URL=http://producer-api:3001
+      - NEXT_PUBLIC_CONSUMER_API_URL=http://consumer-api:3002
+    depends_on:
+      - producer-api
+      - consumer-api
+
+  producer-api:
+    build: ./producerAPI
+    ports:
+      - "3001:3001"
+    env_file:
+      - ./producerAPI/.env
+
+  consumer-api:
+    build: ./consumerAPI
+    ports:
+      - "3002:3002"
+    env_file:
+      - ./consumerAPI/.env
