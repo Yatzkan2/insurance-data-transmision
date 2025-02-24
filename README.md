@@ -1,4 +1,3 @@
-
 # Insurance Microservices Project
 
 This project is designed as a practical demonstration of a microservices-based architecture that manages insurance data transmission securely and efficiently. It includes a Next.js frontend built with ShadCN components and two Express.js backend microservices: a Producer (sending data via AWS SQS) and a Consumer (receiving data and storing it into a MongoDB database).
@@ -11,18 +10,34 @@ Users submit insurance details through a modern, responsive interface. The submi
 
 ---
 
-## Important Design Choices
+## Screens
+
+### Welcome page
+
+![Alt text here](/Users/yairyatzkan/Desktop/welcome.png)
+
+### Details page
+
+![Alt text here](/Users/yairyatzkan/Desktop/details.png)
+
+### History page
+
+![Alt text here](/Users/yairyatzkan/Desktop/history.png)
+
+
+## Questioins
 
 ### 1. How can you make the project scalable?
 
-Microservices architecture inherently supports scalability. To scale this project, simply deploy multiple instances of each microservice behind a load balancer, or use container orchestration tools like Kubernetes. AWS SQS is already highly scalable and ensures reliable communication at scale.
+First, microservices is a scalable architecture. furthemore, To scale this system we will use containerization tools like docker and orchestrate them with Kubernetes.
 
 ### 2. Why did you choose that kind of database?
 
-I chose MongoDB because it's highly flexible and can easily handle the evolving structure of insurance data without complicated migrations. It also integrates smoothly with JavaScript-based stacks, making development simpler and more efficient.
+mongoDB fits because it's can easily handle an evolving structure of insurance data which is not necessarily for tables. It also integrates smoothly with JS through the mongoose ODM.
 
 ### 3. Why did you choose these specific details from the insurance world? Why do you think they are the most important ones?
 
-I selected details like insurance type, coverage limits, premiums, and client personal identifiers because these directly affect policy decisions and customer interactions. They form the core data required by insurance providers, balancing detail and usability, which is essential for practical insurance processing.
+The details i chose to use are: Insurance limit, Insurance coverage, Insurance premuium, Insurance type.
+I found them the most important details because insurance is a financial product that people purchase and the monitary details are the most relevant when talking about financial decisions.
 
 ---
