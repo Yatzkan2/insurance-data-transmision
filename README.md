@@ -14,15 +14,15 @@ Users submit insurance details through a modern, responsive interface. The submi
 
 ### Welcome page
 
-![Alt text here](/Users/yairyatzkan/Desktop/welcome.png)
+![Alt text here](./screens-images/welcome.png)
 
 ### Details page
 
-![Alt text here](/Users/yairyatzkan/Desktop/details.png)
+![Alt text here](./screens-images/details.png)
 
 ### History page
 
-![Alt text here](/Users/yairyatzkan/Desktop/history.png)
+![Alt text here](./screens-images/history.png)
 
 
 ## Questioins
