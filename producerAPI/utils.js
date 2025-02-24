@@ -4,21 +4,13 @@ import dotenv from 'dotenv';
 if(process.env.NODE_ENV !== 'production') {
     dotenv.config()
 }
-const config = {
-    region: process.env.AWS_REGION || 'us-east-1',
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
-};
 
 export const sendSqs = async (url, data) => {
     if(!data.body) {
         throw Error('Meassage is empty')
     }
     const msg = convertToMessageAttributes(data.body);
-    //console.log(msg)
-    const client = new SQSClient({});  // AWS config should be here
+    const client = new SQSClient({}); 
     const input = {
         QueueUrl: url,
         MessageAttributes: {

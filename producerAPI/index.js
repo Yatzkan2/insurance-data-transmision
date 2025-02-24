@@ -33,8 +33,8 @@ app.post('/insurance/send', async (req, res) => {
     }
     //console.log(data);
     try {
-        await sendSqs(process.env.QUEUE_URL, data);
-        res.status(200).json({ message: 'Message sent successfully' });
+        const response = await sendSqs(process.env.QUEUE_URL, data);
+        res.status(200).json({ message: 'Message sent successfully', data: response });
     } catch (error) {
         console.error("something went wrong with enquing sqs", error);
         res.status(500).json({ error: 'Failed to send message' });

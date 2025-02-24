@@ -1,13 +1,5 @@
 import { SQSClient, ReceiveMessageCommand, DeleteMessageCommand } from "@aws-sdk/client-sqs";
 
-const config = {
-    region: process.env.AWS_REGION || 'us-east-1',
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-    }
-};
-
 export const pollSqs = async (url) => {
   try {
 
@@ -21,18 +13,31 @@ export const pollSqs = async (url) => {
     };
     const command = new ReceiveMessageCommand(input);
     const response = await client.send(command);
+
+    if (!response.Messages || response.Messages.length === 0) {
+      console.log("No messages received from queue");
+      return [];
+    }
     console.log("@@@@@@@@@@@@@ POLL FUNCTION RESPONSE @@@@@@@@@@@@@")
     console.log(response)
+
     const messages = response.Messages;
+
     console.log("@@@@@@@@@@@@@ POLL FUNCTION MESSAGES @@@@@@@@@@@@@")
     console.log(messages)
+
     const convertedData = messageAttributesToObjects(messages)
+
     console.log("@@@@@@@@@@@@@ POLL FUNCTION CONVERTED DATA @@@@@@@@@@@@@")
     console.log(messages)
+
     return convertedData;
   } catch (error) {
     console.error(error)
+    throw error; 
   }}
+
+
 
 const messageAttributesToObjects = messagesArray => {
   if (!messagesArray) {
