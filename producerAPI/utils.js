@@ -9,6 +9,7 @@ export const sendSqs = async (url, data) => {
     if(!data.body) {
         throw Error('Meassage is empty')
     }
+    const uniqueId = new Date().getTime() + '-' + Math.random().toString(36).substring(2, 15);
     const msg = convertToMessageAttributes(data.body);
     const client = new SQSClient({}); 
     const input = {
@@ -17,6 +18,7 @@ export const sendSqs = async (url, data) => {
             ...msg
         },
         MessageBody: "Insurance details",
+        MessageDeduplicationId: uniqueId,
         MessageGroupId: "0",
     };
     const command = new SendMessageCommand(input);
