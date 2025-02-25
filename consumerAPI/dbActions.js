@@ -10,7 +10,8 @@ export const insertMessages = async (messages) => {
         const res = await Message.insertMany(messagesModelArray);
         return res;
     } catch (error) {
-        console.error(`failed inserting to DB`);
+        console.error(`failed inserting to DB, ${error}`);
+        throw Error(error)
     }
 }
 

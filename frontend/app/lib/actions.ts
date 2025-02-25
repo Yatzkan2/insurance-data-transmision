@@ -35,8 +35,10 @@ const submitForm = async (data:InsuranceDetailsInputs | undefined | any)=> {
         });
         console.log("RESPONSE FROM PRODUCER:")
         console.log(response);
+        return response.data;
     } catch (error) {
         console.error(error)
+        throw error;
     }
 }
 

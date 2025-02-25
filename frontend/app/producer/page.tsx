@@ -46,7 +46,8 @@ export default function ProducerPage() {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         console.log("form submitted");
         console.log(values);
-        await submitForm(values);
+        const response = await submitForm(values);
+        alert(response.clientExists === true ? "Cannot send the data, this client already exists": "Thank you! Your details has been sent.")
         await pollSqsAndPushToDB();
     }
 

@@ -39,6 +39,7 @@ app.post('/insurance/poll', async (req, res) => {
         res.send({"messages": messages, "db reponse": dbRes, "delete from sqs reponses": deleteResponses});
     } catch (error){
         console.error(error)
+        throw Error(error)
     }
 })
 
