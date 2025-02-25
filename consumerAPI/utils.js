@@ -68,7 +68,6 @@ export const deleteSqsMessages = async (url, messages) => {
         QueueUrl: url, // required
         ReceiptHandle: msg.receiptHandle, // required
       };
-      console.log(`!!!!!!!!!! trying to delete: ${msg.receiptHandle}`)
       try{
         const command = new DeleteMessageCommand(input);
         const response = await client.send(command);

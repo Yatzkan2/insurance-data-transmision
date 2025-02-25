@@ -38,10 +38,8 @@ app.post('/insurance/send', async (req, res) => {
     if(!data) {
         throw Error('message is empty')
     }
-    console.log(data);
     try {
         const existResponse = await checkExistingClient(data.body.id);
-        console.log(existResponse)
         if (existResponse.length !== 0) {
             res.status(200).json({message: `client with id: ${data.body.id}, already exists`, clientExists: true});
         } else {
@@ -55,8 +53,7 @@ app.post('/insurance/send', async (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log("##########################################")
-    console.log(`########### LISTENING ON ${PORT} ############`)
-    console.log("##########################################")
-
+    console.log("#######################################################")
+    console.log(`########### PRODUCER API LISTENING ON ${PORT} ############`)
+    console.log("#######################################################")
 })

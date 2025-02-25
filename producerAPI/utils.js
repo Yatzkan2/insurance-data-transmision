@@ -24,9 +24,9 @@ export const sendSqs = async (url, data) => {
     const command = new SendMessageCommand(input);
     try {
         const response = await client.send(command);
-        console.log("GREAT SUCCESS!");
         return response;
     } catch (error) {
+        console.error(error)
         throw error;
     }
 }

@@ -53,9 +53,9 @@ app.get('/insurance/messages', async (req, res) => {
 })
 
 app.listen(PORT, () => {
-    console.log("##########################################")
-    console.log(`########### LISTENING ON ${PORT} ############`)
-    console.log("##########################################")
+    console.log("#######################################################")
+    console.log(`########### CONSUMER API LISTENING ON ${PORT} ############`)
+    console.log("#######################################################")
 
 })
 

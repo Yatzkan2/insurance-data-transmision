@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import { Message } from "./mongooseModels.js";
 
 export const insertMessages = async (messages) => {
-    console.log(`insertMessages fundtion`)
     const messagesModelArray = messages.map((msg, index) => {
         return new Message(msg);
     })
